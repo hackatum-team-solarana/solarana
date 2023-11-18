@@ -1,0 +1,14 @@
+/* Style for the grid container */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 3 columns */
+    border: none;
+    padding: -10px;
+  }
+
+  /* Style for grid items (cells) */
+  .grid-item {
+    border: none;
+    padding: -10px;
+    text-align: left;
+  }

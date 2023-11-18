@@ -1,10 +1,10 @@
-import Price from "../components/PricePerUnit";
+import BuyPanel from "../components/BuyPanel";
 
 
 function Buy() {
     return (
         <div>
-            <Price />
+            <BuyPanel />
         </div>
     );
 };
