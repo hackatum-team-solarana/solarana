@@ -1,5 +1,5 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import App from "../App.tsx";
+import LandingPage from "../pages/landing_page/LandingPage.tsx";
 import {Wallet} from "./Wallet.tsx";
 
 /**
@@ -21,7 +21,7 @@ function Routing() {
         <BrowserRouter basename={getPathname()}>
             <Routes>
                 <Wallet>
-                    <Route path="/" element={<App/>}/>
+                    <Route path="/" element={<LandingPage/>}/>
                 </Wallet>
             </Routes>
         </BrowserRouter>
