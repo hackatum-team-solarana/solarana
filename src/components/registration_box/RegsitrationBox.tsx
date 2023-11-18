@@ -65,6 +65,16 @@ function RegistrationBox(props: { setValues: Dispatch<SetStateAction<Values | nu
             setError("kWh/unit has to be a value!");
             return;
         }
+        setValues(
+            {
+                region: region,
+                age: Number(ageRef.current?.value),
+                size: parseFloat(sizeRef.current?.value),
+                totalAmount: Number(totalAmountRef.current?.value),
+                availableAmount: Number(availableAmountRef.current?.value),
+                kWhUnit: parseFloat(kWhUnitRef.current?.value),
+            }
+        )
         setOpen(false);
 
     }
