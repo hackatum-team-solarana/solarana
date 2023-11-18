@@ -1,5 +1,6 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import App from "../App.tsx";
+import Buy from '../pages/Buy.tsx';
 
 /**
  * Returns the pathname of the current Base URL
@@ -20,6 +21,9 @@ function Routing() {
         <BrowserRouter basename={getPathname()}>
             <Routes>
                 <Route path="/" element={<App/>}/>
+            </Routes>
+            <Routes>
+                <Route path="/buy" element={<Buy/>}/>
             </Routes>
         </BrowserRouter>
     );
