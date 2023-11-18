@@ -71,21 +71,21 @@ function BuyFilterButtons() {
                     </fieldset>
                     <fieldset className="Fieldset">
                         <label className="Label" htmlFor="age">
-                            Age 
+                            Maximum Age 
                         </label>
                         {/* TODO slider for maximum / minimum age */}
                         <input className="Input" id="age" defaultValue="" ref={ageRef}/>
                     </fieldset>
                     <fieldset className="Fieldset">
                         <label className="Label" htmlFor="size">
-                            Price
+                            Maximum Price
                         </label>
                         {/* TODO slider for maximum / minimum price */}
                         <input className="Input" id="size" defaultValue="" ref={priceRef}/>
                     </fieldset>
                     <fieldset className="Fieldset">
                         <label className="Label" htmlFor="total amount">
-                            kWh/unit
+                            Minimum kWh/unit
                         </label>
                         {/* TODO slider for maximum / minimum power */}
                         <input className="Input" id="total amount" defaultValue="" ref={powerRef}/>
