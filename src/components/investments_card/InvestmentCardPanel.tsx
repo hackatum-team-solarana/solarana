@@ -4,6 +4,7 @@ import "./styleInvestmentCardPanel.css";
 
 
 interface BuyPanelParams  {
+    id: number,
     provider: string,
     region: string,
     ageInYears: number,
