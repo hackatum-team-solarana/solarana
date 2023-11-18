@@ -15,7 +15,7 @@ function SemiDonutChart(props: ProfitNInvest) {
                 type: 'donut',
             },
             labels: ["Profit", "Invest"],
-            colors: ['#008f83', '#990040'],
+            colors: ['#03b4a8', '#990040'],
             plotOptions: {
                 pie: {
                     startAngle: -90,
@@ -30,6 +30,13 @@ function SemiDonutChart(props: ProfitNInvest) {
             },
             legend: {
                 show: false,
+            },
+            states: {
+                hover: {
+                    filter: {
+                        type: 'none',
+                    }
+                }
             },
             responsive: [{
                 breakpoint: 480,
@@ -47,7 +54,7 @@ function SemiDonutChart(props: ProfitNInvest) {
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
-    return (<div id="chart" style={{width: "800px"}}><ReactApexChart options={state.options} series={state.series}
+    return (<div id="chart" style={{width: "700px"}}><ReactApexChart options={state.options} series={state.series}
                                                                      type="donut"/>
         </div>
     );

@@ -1,8 +1,7 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import App from "../App.tsx";
-import RegsitrationBox from "../components/registration_box/RegsitrationBox.tsx";
-import {useState} from "react";
-import InvestmentCardPanelsFlexBox from "../components/investments_card/InvestmentCardPanelsFlexBox.tsx";
+import LandingPage from "../pages/landing_page/LandingPage.tsx";
+import {useWallet} from "@solana/wallet-adapter-react";
+import Dashboard from "../pages/dashboard/Dashboard.tsx";
 
 /**
  * Returns the pathname of the current Base URL
@@ -18,25 +17,15 @@ const getPathname = () => {
  * Implementations of the Router.
  * @return {JSX.Element} The Router
  */
-
-interface Values {
-    region: string,
-    age: number,
-    size: number,
-    totalAmount: number,
-    availableAmount: number,
-    kWhUnit: number,
-
-}
-
 function Routing() {
-    const [value, setValue] = useState<Values | null>(null);
+    const {connected} = useWallet();
     return (
         <BrowserRouter basename={getPathname()}>
             <Routes>
-                <Route path="/" element={<App/>}/>
-                <Route path="/test" element={<RegsitrationBox setValues={setValue}/>}/>
-
+                <Route path="/" element={<LandingPage/>}/>
+                {connected && (
+                    <Route path="/dashboard" element={<Dashboard/>}/>
+                )}
             </Routes>
         </BrowserRouter>
     );
