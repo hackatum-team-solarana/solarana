@@ -15,8 +15,6 @@ function BuyFilterButtons() {
     const ageRef = useRef<HTMLInputElement | null>(null);
     const priceRef = useRef<HTMLInputElement | null>(null);
     const powerRef = useRef<HTMLInputElement | null>(null);
-    const availableAmountRef = useRef<HTMLInputElement | null>(null);
-    const kWhUnitRef = useRef<HTMLInputElement | null>(null);
 
 
     const [open, setOpen] = useState<boolean>(false);
@@ -28,25 +26,11 @@ function BuyFilterButtons() {
         setRegion(null);
 
 
-        if (region === null) {
-            setError("You have to select a region!");
-            return;
-        }
-
         if (!ageRef.current?.value || !Number.isInteger(Number(ageRef.current?.value))) {
-            setError("Age has to be a value without decimals!");
+            setError("Maximum Age has to be a value without decimals!");
             return;
         }
 
-        if (!availableAmountRef.current?.value || !Number.isInteger(Number(availableAmountRef.current?.value))) {
-            setError("Available Amount has to be a value without decimals!");
-            return;
-        }
-
-        if (!kWhUnitRef.current?.value || !parseFloat(kWhUnitRef.current?.value)) {
-            setError("kWh/unit has to be a value!");
-            return;
-        }
         setOpen(false);
 
     }
