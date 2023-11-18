@@ -2,6 +2,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import App from "../App.tsx";
 import RegsitrationBox from "../components/registration_box/RegsitrationBox.tsx";
 import {useState} from "react";
+import InvestmentCardPanelsFlexBox from "../components/investments_card/InvestmentCardPanelsFlexBox.tsx";
 
 /**
  * Returns the pathname of the current Base URL
