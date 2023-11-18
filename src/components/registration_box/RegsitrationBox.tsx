@@ -4,6 +4,7 @@ import './styleRegistrationBox.css';
 import DropdownRegistrationBox from "./DropdownRegistrationBox.tsx";
 import {Dispatch, SetStateAction, useRef, useState} from "react";
 import {Text} from "@radix-ui/themes";
+import useRegisterPanel from '../../hooks/useRegisterPanel.tsx';
 
 interface Values {
     region: string,
@@ -27,7 +28,9 @@ function RegistrationBox(props: { setValues: Dispatch<SetStateAction<Values | nu
 
 
     const [open, setOpen] = useState<boolean>(false);
-    const [error, setError] = useState<string | null>()
+    const [error, setError] = useState<string | null>();
+
+    const {registerPanel} = useRegisterPanel();
 
 
     const handleClick = () => {
@@ -75,6 +78,10 @@ function RegistrationBox(props: { setValues: Dispatch<SetStateAction<Values | nu
                 kWhUnit: parseFloat(kWhUnitRef.current?.value),
             }
         )
+
+        const areaPerUnit = parseFloat(sizeRef.current?.value) / 1000;
+
+        registerPanel(region, areaPerUnit, parseFloat(sizeRef.current?.value), 0, Number(ageRef.current?.value));
         setOpen(false);
 
     }

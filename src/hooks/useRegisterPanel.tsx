@@ -9,7 +9,7 @@ import {Buffer} from "buffer";
 function useRegisterPanel() {
     const {publicKey, wallet, sendTransaction} = useWallet();
 
-    const registerPanel = async () => {
+    const registerPanel = async (region: string, apu: number, power: number, ppu: BN, age: BN) => {
 
         if (!publicKey || !wallet) {
             return;
@@ -55,13 +55,6 @@ function useRegisterPanel() {
             PROGRAM_ID
         );
 
-        const panelDetails = {
-            apu: 23.3,
-            power: 1230.5,
-            ppu: new BN(1200),
-            age: new BN(5),
-        }
-
         // Send transaction
         const recipientATA = PublicKey.findProgramAddressSync(
             [
@@ -84,7 +77,7 @@ function useRegisterPanel() {
             .instruction();
 
         const callInitializePanel = await program.methods
-            .initializePanel(panelDetails.apu, panelDetails.power, panelDetails.ppu, panelDetails.age)
+            .initializePanel(region, apu, power, ppu, age)
             .accounts({
                 panel: panelPk
             })
@@ -123,5 +116,8 @@ function useRegisterPanel() {
     }
 
 }
+
+
+
 
 export default useRegisterPanel;

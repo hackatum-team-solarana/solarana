@@ -6,12 +6,9 @@ import {useState} from "react";
 import {Heading, Text} from "@radix-ui/themes";
 import InvestmentCardPanelsFlexBox from "../../components/investments_card/InvestmentCardPanelsFlexBox.tsx";
 import RegistrationBox from "../../components/registration_box/RegsitrationBox.tsx";
-import {useWallet} from "@solana/wallet-adapter-react";
 import { Buffer } from 'buffer';
-import useRegisterPanel from "../../hooks/useRegisterPanel.tsx";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-expect-error
 window.Buffer = Buffer;
 
 interface Values {
@@ -24,10 +21,8 @@ interface Values {
 }
 
 function Dashboard() {
-    const [currentVal, setCurrentVal] = useState(200);
-    const [newPanel, setNewPanel] = useState<Values | null>(null);
-    const {wallet, publicKey, sendTransaction} = useWallet();
-    const {registerPanel} = useRegisterPanel();
+    const [currentVal, _setCurrentVal] = useState(200);
+    const [_newPanel, setNewPanel] = useState<Values | null>(null);
 
 
     return (
@@ -76,7 +71,7 @@ function Dashboard() {
                         flexDirection: "row-reverse",
                         borderRight: "30px solid transparent"
                     }}>
-                        <RegistrationBox setValues={setNewPanel}/>
+                        <RegistrationBox setValues={setNewPanel} />
                     </div>
                     <Heading size={"8"} weight={"bold"} style={{paddingLeft: "30px"}}>
                         My Investments:
