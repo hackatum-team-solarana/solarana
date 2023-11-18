@@ -1,5 +1,7 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import LandingPage from "../pages/landing_page/LandingPage.tsx";
+import App from "../App.tsx";
+import {Wallet} from "./Wallet.tsx";
 
 /**
  * Returns the pathname of the current Base URL
@@ -19,7 +21,9 @@ function Routing() {
     return (
         <BrowserRouter basename={getPathname()}>
             <Routes>
-                <Route path="/" element={<LandingPage/>}/>
+                <Wallet>
+                    <Route path="/" element={<LandingPage/>}/>
+                </Wallet>
             </Routes>
         </BrowserRouter>
     );
