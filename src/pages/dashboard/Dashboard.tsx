@@ -3,21 +3,27 @@
 import background from "../../assets/media/background.jpeg";
 import SemiDonutChart from "../../components/semi_donut_chart/SemiDonutChart.tsx";
 import {useState} from "react";
-import {Heading, Text} from "@radix-ui/themes";
+import { Button, Heading, Text} from "@radix-ui/themes";
 import InvestmentCardPanelsFlexBox from "../../components/investments_card/InvestmentCardPanelsFlexBox.tsx";
 import RegistrationBox from "../../components/registration_box/RegsitrationBox.tsx";
 import { Buffer } from 'buffer';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 window.Buffer = Buffer;
+import './styleDashboard.css';
+import {useNavigate} from "react-router-dom";
 
 interface Values {
     region: string,
     age: number,
     size: number,
-    totalAmount: number,
     availableAmount: number,
     kWhUnit: number,
+    pricePerUnit: number,
+}
+
+const goToPageOnClick = () => {
+    useNavigate();
 }
 
 function Dashboard() {
@@ -71,7 +77,10 @@ function Dashboard() {
                         flexDirection: "row-reverse",
                         borderRight: "30px solid transparent"
                     }}>
-                        <RegistrationBox setValues={setNewPanel} />
+                        <RegistrationBox setValues={setNewPanel}/>
+                        <Button onClick={() => goToPageOnClick()} className="goToBuyButton">
+                            buy more units
+                        </Button>
                     </div>
                     <Heading size={"8"} weight={"bold"} style={{paddingLeft: "30px"}}>
                         My Investments:
