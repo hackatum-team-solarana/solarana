@@ -1,6 +1,5 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import LandingPage from "../pages/landing_page/LandingPage.tsx";
-import App from "../App.tsx";
 import {Wallet} from "./Wallet.tsx";
 
 /**
