@@ -1,3 +1,4 @@
+import BuyFilterButtons from "../components/BuyFilterButtons";
 import BuyPanelsFlexBox from "../components/BuyPanelsFlexBox";
 
 
@@ -7,7 +8,7 @@ import BuyPanelsFlexBox from "../components/BuyPanelsFlexBox";
 function Buy() {
     return (
         <div>
-
+            <BuyFilterButtons></BuyFilterButtons>
             <BuyPanelsFlexBox />
 
         </div>

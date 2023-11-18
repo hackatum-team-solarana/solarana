@@ -8,12 +8,14 @@ interface BuyPanelParams  {
     region: string,
     ageInYears: number, 
     powerPerUnit: number, 
-
+    totalAmount: number,
+    availableAmount: number,
+    price: number,
 };
 
 
 function BuyPanel(props: BuyPanelParams) {
-    const {provider, region, ageInYears, powerPerUnit} = props;
+    const {provider, region, ageInYears, powerPerUnit, totalAmount, availableAmount, price} = props;
     return (
         <div className="wrap">
             <h4><Text>25qm Solarpanel</Text></h4>
@@ -38,11 +40,17 @@ function BuyPanel(props: BuyPanelParams) {
                         <div className="grid-item"><Text size="2">kWh/unit:</Text></div>
                         <div className="grid-item"><Text size="2">{ powerPerUnit }</Text></div>
 
+                        <div className="grid-item"><Text size="2">total amount:</Text></div>
+                        <div className="grid-item"><Text size="2">{ totalAmount }</Text></div>
+
+                        <div className="grid-item"><Text size="2">available amount:</Text></div>
+                        <div className="grid-item"><Text size="2">{ availableAmount }</Text></div>
+
                     </div>
                 </div>
                 
                 <div className="grid-item-above">
-                    <PricePerUnit /> 
+                    <PricePerUnit price={price}/> 
                 </div>
             
             </div>
