@@ -3,19 +3,19 @@ import "./BuyFilterButtons.css"
 import * as Dialog from '@radix-ui/react-dialog';
 import {Cross2Icon} from '@radix-ui/react-icons';
 import DropdownFilterBox from "./DropdownFIlterBox";
-import {useRef, useState} from "react";
+import {useState} from "react";
 import {Text} from "@radix-ui/themes";
 
 
 
-function BuyFilterButtons() {
-  
-
-    const [region, setRegion] = useState<string | null>(null);
-    const ageRef = useRef<HTMLInputElement | null>(null);
-    const priceRef = useRef<HTMLInputElement | null>(null);
-    const powerRef = useRef<HTMLInputElement | null>(null);
-
+function BuyFilterButtons(props : {
+        setRegion: React.Dispatch<React.SetStateAction<string | null>>, 
+        ageRef: React.Ref<HTMLInputElement>, 
+        priceRef: React.Ref<HTMLInputElement>,
+        powerRef: React.Ref<HTMLInputElement>
+    }){
+   
+    const {setRegion, ageRef, priceRef, powerRef} = props; 
 
     const [open, setOpen] = useState<boolean>(false);
     const [error, setError] = useState<string | null>()
@@ -23,16 +23,9 @@ function BuyFilterButtons() {
 
     const handleClick = () => {
         setError(null);
-        setRegion(null);
 
-
-        if (!ageRef.current?.value || !Number.isInteger(Number(ageRef.current?.value))) {
-            setError("Maximum Age has to be a value without decimals!");
-            return;
-        }
-
+      
         setOpen(false);
-
     }
 
     return (

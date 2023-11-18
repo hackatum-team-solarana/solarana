@@ -9,6 +9,7 @@ import './DropdownFilterBox.css';
 function DropdownFilterBox(props: { setRegion: Dispatch<SetStateAction<string | null>> }) {
 
     const bundeslaender = [
+        null,
         "Baden-Württemberg",
         "Bayern",
         "Berlin",

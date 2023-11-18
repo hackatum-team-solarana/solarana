@@ -8,8 +8,7 @@ import BuyPanelsFlexBox from "../../components/buy_panels_flex_box/BuyPanelsFlex
 function Buy() {
     return (
         <div>
-            <BuyFilterButtons></BuyFilterButtons>
-            <BuyPanelsFlexBox />
+            <BuyPanelsFlexBox></BuyPanelsFlexBox>
 
         </div>
     );
