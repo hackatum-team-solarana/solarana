@@ -3,17 +3,17 @@
 }
 
 .wallet-adapter-modal-wrapper {
-    background: #009989;
+    background: #009989 !important;
 }
 
 .wallet-adapter-modal-button-close {
-    background: #009989;
+    background: #009989 !important;
 }
 
 .wallet-adapter-modal-button-close svg {
-    fill: #fff;
+    fill: #fff !important;
 }
 
 .wallet-adapter-modal-list:hover {
-    background: #08ead0;
+    background: #08ead0 !important;
 }
