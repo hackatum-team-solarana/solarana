@@ -16,17 +16,17 @@ function BuyPanel() {
                         <div className="grid-item"></div>
                         <div className="grid-item"></div>
          
-                        <div className="grid-item"><Text>provider:</Text></div>
-                        <div className="grid-item"><Text>Hans Mueller</Text></div>
+                        <div className="grid-item"><Text size="2">provider:</Text></div>
+                        <div className="grid-item"><Text size="2">Hans Mueller</Text></div>
        
-                        <div className="grid-item"><Text>region:</Text></div>
-                        <div className="grid-item"><Text>Bayern</Text></div>
+                        <div className="grid-item"><Text size="2">region:</Text></div>
+                        <div className="grid-item"><Text size="2">Bayern</Text></div>
 
-                        <div className="grid-item"><Text>age in years:</Text></div>
-                        <div className="grid-item"><Text>0</Text></div>
+                        <div className="grid-item"><Text size="2">age in years:</Text></div>
+                        <div className="grid-item"><Text size="2">0</Text></div>
 
-                        <div className="grid-item"><Text>kWh/unit:</Text></div>
-                        <div className="grid-item"><Text>11111</Text></div>
+                        <div className="grid-item"><Text size="2">kWh/unit:</Text></div>
+                        <div className="grid-item"><Text size="2">11111</Text></div>
 
                     </div>
                 </div>
