@@ -1,26 +1,49 @@
 // @ts-nocheck
-import React from 'react';
+import React, {Dispatch, SetStateAction} from 'react';
 import * as Select from '@radix-ui/react-select';
 import classnames from 'classnames';
 import {CheckIcon, ChevronDownIcon, ChevronUpIcon} from '@radix-ui/react-icons';
 import './styleDropdownRegistrationBox.css';
 
-function DropdownRegistrationBox() {
 
+function DropdownRegistrationBox(props: { setRegion: Dispatch<SetStateAction<string | null>> }) {
+
+    const bundeslaender = [
+        "Baden-Württemberg",
+        "Bayern",
+        "Berlin",
+        "Brandenburg",
+        "Bremen",
+        "Hamburg",
+        "Hessen",
+        "Mecklenburg-Vorpommern",
+        "Niedersachsen",
+        "Nordrhein-Westfalen",
+        "Rheinland-Pfalz",
+        "Saarland",
+        "Sachsen",
+        "Sachsen-Anhalt",
+        "Schleswig-Holstein",
+        "Thüringen"
+    ]
+
+    const {setRegion} = props;
     const SelectItem = React.forwardRef(({children, className, ...props}, forwardedRef) => {
         return (
-            <Select.Item className={classnames('SelectItem', className)} {...props} ref={forwardedRef}>
-                <Select.ItemText>{children}</Select.ItemText>
-                <Select.ItemIndicator className="SelectItemIndicator">
-                    <CheckIcon/>
-                </Select.ItemIndicator>
-            </Select.Item>
+            <div onClick={() => setRegion(className)}>
+                <Select.Item className={classnames('SelectItem', className)} {...props} ref={forwardedRef}>
+                    <Select.ItemText>{children}</Select.ItemText>
+                    <Select.ItemIndicator className="SelectItemIndicator">
+                        <CheckIcon/>
+                    </Select.ItemIndicator>
+                </Select.Item>
+            </div>
         );
     });
 
     return (
-        <Select.Root>
-            <Select.Trigger className="SelectTrigger" aria-label="Food">
+        <Select.Root onValueChange={(e => setRegion(e))}>
+            <Select.Trigger className="SelectTrigger" aria-label="Region">
                 <Select.Value placeholder="Select a region…"/>
                 <Select.Icon className="SelectIcon">
                     <ChevronDownIcon/>
@@ -35,22 +58,9 @@ function DropdownRegistrationBox() {
                         <Select.Group>
                             <Select.Label className="SelectLabel">Germany</Select.Label>
                             <Select.Separator className="SelectSeparator"/>
-                            <SelectItem value="Baden-Württemberg">Baden-Württemberg</SelectItem>
-                            <SelectItem value="Bayern">Bayern</SelectItem>
-                            <SelectItem value="Berlin">Berlin</SelectItem>
-                            <SelectItem value="Brandenburg">Brandenburg</SelectItem>
-                            <SelectItem value="Bremem">Bremem</SelectItem>
-                            <SelectItem value="Hamburg">Hamburg</SelectItem>
-                            <SelectItem value="Hessen">Hessen</SelectItem>
-                            <SelectItem value="Mecklenburg-Vorpommern">Mecklenburg-Vorpommern</SelectItem>
-                            <SelectItem value="Niedersachsen">Niedersachsen</SelectItem>
-                            <SelectItem value="Nordrhein-Westfalen">Nordrhein-Westfalen</SelectItem>
-                            <SelectItem value="Rheinland-Pfalz">Rheinland-Pfalz</SelectItem>
-                            <SelectItem value="Saarland">Saarland</SelectItem>
-                            <SelectItem value="Sachsen">Sachsen</SelectItem>
-                            <SelectItem value="Sachsen-Anhalt">Sachsen-Anhalt</SelectItem>
-                            <SelectItem value="Schleswig-Holstein">Schleswig-Holstein</SelectItem>
-                            <SelectItem value="Thüringen">Thüringen</SelectItem>
+                            {bundeslaender.map(bundesland =>
+                                <SelectItem key={bundesland} value={bundesland}>{bundesland}</SelectItem>
+                            )}
                         </Select.Group>
                         <Select.Separator className="SelectSeparator"/>
 
