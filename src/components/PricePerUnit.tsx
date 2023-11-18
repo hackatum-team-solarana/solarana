@@ -1,14 +1,14 @@
 
 import './PricePerUnit.css'
-import { Button } from '@radix-ui/themes';
+import { Button, Text } from '@radix-ui/themes';
 
 
 function PricePerUnit() {
     return (
         <div>
-            <p  style={{padding: 0, margin: 1}}>price per unit</p>
-            <h3 style={{padding: 0, margin: 1, marginBottom: 18}}>10€</h3> 
-            <Button>buy now!</Button>
+            <p  style={{padding: 0, margin: 1}}><Text>price per unit</Text></p>
+            <h3 style={{padding: 0, margin: 1, marginBottom: 18}}><Text>10€</Text></h3> 
+            <Button style={{ background: "#009989", opacity: 0.46 }}><Text>buy now!</Text></Button>
         </div>
     );
 }

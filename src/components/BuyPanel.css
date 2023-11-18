@@ -3,12 +3,20 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* 3 columns */
     border: none;
-    padding: -10px;
+    padding: 0px;
+    justify-content: center;
+    align-items: center;
   }
 
   /* Style for grid items (cells) */
   .grid-item {
     border: none;
-    padding: -10px;
+    padding: 0px;
     text-align: left;
+  }
+
+  .grid-item-above {
+    border: none;
+    padding: 0px;
+    text-align: center;
   }
