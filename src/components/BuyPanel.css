@@ -1,0 +1,31 @@
+/* Style for the grid container */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 3 columns */
+    border: none;
+    padding: 4px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Style for grid items (cells) */
+  .grid-item {
+    border: none;
+    padding: 4px;
+    text-align: left;
+  }
+
+  .grid-item-above {
+    border: none;
+    padding: 0px;
+    text-align: center;
+  }
+
+.wrap {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+}
