@@ -105,7 +105,7 @@ function RegistrationBox(props: { setValues: Dispatch<SetStateAction<Values | nu
                     </fieldset>
                     <fieldset className="Fieldset">
                         <label className="Label" htmlFor="size">
-                            Size
+                            Size in m<sup >2</sup>
                         </label>
                         <input className="Input" id="size" defaultValue="" ref={sizeRef}/>
                     </fieldset>

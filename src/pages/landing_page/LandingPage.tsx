@@ -48,17 +48,18 @@ function LandingPage() {
                         <InfoAccordion/>
                     </div>
                     <div style={{display: "flex", justifyContent: "center", marginTop: "100px", gap: "50px"}}>
-                        <WalletModalButton style={{
+                        <WalletModalButton className={"LoginButton"} style={{
                             backgroundColor: "black",
                             width: "150px",
                             height: "50px",
                             display: "flex",
-                            justifyContent: "center"
+                            justifyContent: "center",
+                            boxShadow: "0 2px 10px var(--black-a7)"
                         }}>
                             Login
                         </WalletModalButton>
-                        <Button style={{backgroundColor: "#009989", width: "200px", height: "50px", opacity: "50%"}}
-                                onClick={() => window.location.href = "/login"}>
+                        <Button className={"MoreInformationButton"}
+                                onClick={() => window.location.href = "https://solana.com/de"}>
                             More Information
                         </Button>
                     </div>
