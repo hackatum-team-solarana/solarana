@@ -1,9 +1,18 @@
+// @ts-ignore
+
 import background from "../../assets/media/background.jpeg";
 import SemiDonutChart from "../../components/semi_donut_chart/SemiDonutChart.tsx";
 import {useState} from "react";
 import {Button, Heading, Text} from "@radix-ui/themes";
 import InvestmentCardPanelsFlexBox from "../../components/investments_card/InvestmentCardPanelsFlexBox.tsx";
 import RegistrationBox from "../../components/registration_box/RegsitrationBox.tsx";
+import {useWallet} from "@solana/wallet-adapter-react";
+import { Buffer } from 'buffer';
+import useRegisterPanel from "../../hooks/useRegisterPanel.tsx";
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
+window.Buffer = Buffer;
 import './styleDashboard.css';
 import {useNavigate} from "react-router-dom";
 
@@ -23,6 +32,10 @@ const goToPageOnClick = () => {
 function Dashboard() {
     const [currentVal, setCurrentVal] = useState(200);
     const [newPanel, setNewPanel] = useState<Values | null>(null);
+    const {wallet, publicKey, sendTransaction} = useWallet();
+    const {registerPanel} = useRegisterPanel();
+
+
     return (
         <main style={{
             backgroundImage: `url(${background})`,
@@ -84,8 +97,7 @@ function Dashboard() {
                 </div>
             </div>
         </main>
-    )
-        ;
+    );
 }
 
 export default Dashboard;
