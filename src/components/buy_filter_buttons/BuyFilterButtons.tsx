@@ -13,8 +13,8 @@ function BuyFilterButtons() {
 
     const [region, setRegion] = useState<string | null>(null);
     const ageRef = useRef<HTMLInputElement | null>(null);
-    const sizeRef = useRef<HTMLInputElement | null>(null);
-    const totalAmountRef = useRef<HTMLInputElement | null>(null);
+    const priceRef = useRef<HTMLInputElement | null>(null);
+    const powerRef = useRef<HTMLInputElement | null>(null);
     const availableAmountRef = useRef<HTMLInputElement | null>(null);
     const kWhUnitRef = useRef<HTMLInputElement | null>(null);
 
@@ -38,19 +38,8 @@ function BuyFilterButtons() {
             return;
         }
 
-        if (!totalAmountRef.current?.value || !Number.isInteger(Number(totalAmountRef.current?.value))) {
-            setError("Total Amount has to be a value without decimals!");
-            return;
-        }
-
         if (!availableAmountRef.current?.value || !Number.isInteger(Number(availableAmountRef.current?.value))) {
             setError("Available Amount has to be a value without decimals!");
-            return;
-        }
-
-
-        if (!sizeRef.current?.value || !parseFloat(sizeRef.current?.value)) {
-            setError("Size has to be a value!");
             return;
         }
 
@@ -65,14 +54,14 @@ function BuyFilterButtons() {
     return (
         <Dialog.Root open={open} onOpenChange={setOpen}>
             <Dialog.Trigger asChild>
-                <button className="Button violet">Register your solar panel</button>
+                <button className="Button violet">Filter</button>
             </Dialog.Trigger>
             <Dialog.Portal>
                 <Dialog.Overlay className="DialogOverlay"/>
                 <Dialog.Content className="DialogContent">
-                    <Dialog.Title className="DialogTitle">Register your solar panel</Dialog.Title>
+                    <Dialog.Title className="DialogTitle">Set search filter</Dialog.Title>
                     <Dialog.Description className="DialogDescription">
-                        Register your solar panel here and click register when you're done!
+                        customize the search filter
                     </Dialog.Description>
                     <fieldset className="Fieldset">
                         <label className="Label" htmlFor="region">
@@ -82,37 +71,29 @@ function BuyFilterButtons() {
                     </fieldset>
                     <fieldset className="Fieldset">
                         <label className="Label" htmlFor="age">
-                            Age in years
+                            Age 
                         </label>
+                        {/* TODO slider for maximum / minimum age */}
                         <input className="Input" id="age" defaultValue="" ref={ageRef}/>
                     </fieldset>
                     <fieldset className="Fieldset">
                         <label className="Label" htmlFor="size">
-                            Size
+                            Price
                         </label>
-                        <input className="Input" id="size" defaultValue="" ref={sizeRef}/>
+                        {/* TODO slider for maximum / minimum price */}
+                        <input className="Input" id="size" defaultValue="" ref={priceRef}/>
                     </fieldset>
                     <fieldset className="Fieldset">
                         <label className="Label" htmlFor="total amount">
-                            Total Amount
-                        </label>
-                        <input className="Input" id="total amount" defaultValue="" ref={totalAmountRef}/>
-                    </fieldset>
-                    <fieldset className="Fieldset">
-                        <label className="Label" htmlFor="available amount">
-                            Available Amount
-                        </label>
-                        <input className="Input" id="available amount" defaultValue="" ref={availableAmountRef}/>
-                    </fieldset>
-                    <fieldset className="Fieldset">
-                        <label className="Label" htmlFor="kwh/unit">
                             kWh/unit
                         </label>
-                        <input className="Input" id="kwh/unit" defaultValue="" ref={kWhUnitRef}/>
+                        {/* TODO slider for maximum / minimum power */}
+                        <input className="Input" id="total amount" defaultValue="" ref={powerRef}/>
                     </fieldset>
+        
                     {error && <Text style={{color: "red"}}>{error}</Text>}
                     <div style={{display: 'flex', marginTop: 25, justifyContent: 'flex-end'}}>
-                        <button onClick={() => handleClick()} className="Button green">Register</button>
+                        <button onClick={() => handleClick()} className="Button green">Search</button>
                     </div>
                     <button onClick={() => setOpen(false)} className="IconButton" aria-label="Close">
                         <Cross2Icon/>
