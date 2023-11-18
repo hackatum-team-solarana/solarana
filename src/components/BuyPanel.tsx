@@ -3,7 +3,17 @@ import PricePerUnit from "./PricePerUnit";
 import "./BuyPanel.css";
 
 
-function BuyPanel() {
+interface BuyPanelParams  {
+    provider: string, 
+    region: string,
+    ageInYears: number, 
+    powerPerUnit: number, 
+
+};
+
+
+function BuyPanel(props: BuyPanelParams) {
+    const {provider, region, ageInYears, powerPerUnit} = props;
     return (
         <div className="wrap">
             <h4><Text>25qm Solarpanel</Text></h4>
@@ -17,16 +27,16 @@ function BuyPanel() {
                         <div className="grid-item"></div>
          
                         <div className="grid-item"><Text size="2">provider:</Text></div>
-                        <div className="grid-item"><Text size="2">Hans Mueller</Text></div>
+                        <div className="grid-item"><Text size="2">{ provider }</Text></div>
        
                         <div className="grid-item"><Text size="2">region:</Text></div>
-                        <div className="grid-item"><Text size="2">Bayern</Text></div>
+                        <div className="grid-item"><Text size="2">{ region }</Text></div>
 
                         <div className="grid-item"><Text size="2">age in years:</Text></div>
-                        <div className="grid-item"><Text size="2">0</Text></div>
+                        <div className="grid-item"><Text size="2">{ ageInYears }</Text></div>
 
                         <div className="grid-item"><Text size="2">kWh/unit:</Text></div>
-                        <div className="grid-item"><Text size="2">11111</Text></div>
+                        <div className="grid-item"><Text size="2">{ powerPerUnit }</Text></div>
 
                     </div>
                 </div>
@@ -42,3 +52,4 @@ function BuyPanel() {
 }
 
 export default BuyPanel
+export type { BuyPanelParams }

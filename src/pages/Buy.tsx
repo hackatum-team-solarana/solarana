@@ -1,10 +1,15 @@
-import BuyPanel from "../components/BuyPanel";
+import BuyPanelsFlexBox from "../components/BuyPanelsFlexBox";
+
+
+
 
 
 function Buy() {
     return (
         <div>
-            <BuyPanel />
+
+            <BuyPanelsFlexBox />
+
         </div>
     );
 };
