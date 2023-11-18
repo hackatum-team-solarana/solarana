@@ -1,0 +1,19 @@
+.wallet-adapter-modal-list li .wallet-adapter-button {
+    width: 88% !important;
+}
+
+.wallet-adapter-modal-wrapper {
+    background: #009989;
+}
+
+.wallet-adapter-modal-button-close {
+    background: #009989;
+}
+
+.wallet-adapter-modal-button-close svg {
+    fill: #fff;
+}
+
+.wallet-adapter-modal-list:hover {
+    background: #08ead0;
+}

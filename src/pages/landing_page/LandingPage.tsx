@@ -5,6 +5,7 @@ import InfoAccordion from "../../components/info_accordion/InfoAccordion.tsx";
 import {WalletModalButton} from "@solana/wallet-adapter-react-ui";
 import {useWallet} from "@solana/wallet-adapter-react";
 import {useNavigate} from "react-router-dom";
+import './styleLandingPage.css';
 
 function LandingPage() {
     const navigate = useNavigate();

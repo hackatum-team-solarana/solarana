@@ -1,10 +1,22 @@
 import background from "../../assets/media/background.jpeg";
 import SemiDonutChart from "../../components/semi_donut_chart/SemiDonutChart.tsx";
 import {useState} from "react";
-import {Text} from "@radix-ui/themes";
+import {Heading, Text} from "@radix-ui/themes";
+import InvestmentCardPanelsFlexBox from "../../components/investments_card/InvestmentCardPanelsFlexBox.tsx";
+import RegistrationBox from "../../components/registration_box/RegsitrationBox.tsx";
+
+interface Values {
+    region: string,
+    age: number,
+    size: number,
+    totalAmount: number,
+    availableAmount: number,
+    kWhUnit: number,
+}
 
 function Dashboard() {
     const [currentVal, setCurrentVal] = useState(200);
+    const [newPanel, setNewPanel] = useState<Values | null>(null);
     return (
         <main style={{
             backgroundImage: `url(${background})`,
@@ -42,13 +54,29 @@ function Dashboard() {
                     marginTop: "20%",
                     width: "100vw",
                     backgroundColor: "white",
-                    minHeight: "80vw",
+                    minHeight: "55vw",
                     borderRadius: "20px 20px 0 0",
                 }}>
+                    <div style={{
+                        marginTop: "30px",
+                        display: "flex",
+                        flexDirection: "row-reverse",
+                        borderRight: "30px solid transparent"
+                    }}>
+                        <RegistrationBox setValues={setNewPanel}/>
+                    </div>
+                    <Heading size={"8"} weight={"bold"} style={{paddingLeft: "30px"}}>
+                        My Investments:
+                    </Heading>
+                    <div style={{marginTop: "10px"}}>
+                        <InvestmentCardPanelsFlexBox/>
+                    </div>
+                    <div style={{height: "40px"}}/>
                 </div>
             </div>
         </main>
-    );
+    )
+        ;
 }
 
 export default Dashboard;

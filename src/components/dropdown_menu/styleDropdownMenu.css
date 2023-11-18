@@ -1,0 +1,10 @@
+.css-dreieck {
+    width: 0;
+    height: 0;
+
+    border-top: 20px solid transparent; /* skyblue */
+    border-right: 20px solid transparent; /* limegreen;  */
+    border-bottom: 20px solid white; /* orange; */
+    border-left: 20px solid transparent;
+    margin-bottom: 20px;
+}

@@ -16,7 +16,7 @@ function BuyPanelsFlexBox() {
     return (
         <div className="container">
 
-            {panels.map(panel => <div className="item"><InvestmentCardPanel {...panel} /></div>)}
+            {panels.map(panel => <div className="item" key={panel.provider + panel.amountYouOwn}><InvestmentCardPanel {...panel} /></div>)}
 
         </div>
     );

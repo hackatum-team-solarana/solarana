@@ -12,7 +12,6 @@ interface Values {
     totalAmount: number,
     availableAmount: number,
     kWhUnit: number,
-
 }
 
 
