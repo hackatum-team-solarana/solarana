@@ -1,5 +1,6 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import App from "../App.tsx";
+import RegsitrationBox from "../components/registration_box/RegsitrationBox.tsx";
 
 /**
  * Returns the pathname of the current Base URL
@@ -20,6 +21,8 @@ function Routing() {
         <BrowserRouter basename={getPathname()}>
             <Routes>
                 <Route path="/" element={<App/>}/>
+                <Route path="/test" element={<RegsitrationBox/>}/>
+
             </Routes>
         </BrowserRouter>
     );
