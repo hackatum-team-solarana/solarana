@@ -1,5 +1,5 @@
-import BuyFilterButtons from "../components/BuyFilterButtons";
-import BuyPanelsFlexBox from "../components/BuyPanelsFlexBox";
+import BuyFilterButtons from "../../components/buy_filter_buttons/BuyFilterButtons";
+import BuyPanelsFlexBox from "../../components/buy_panel_flex_box/BuyPanelsFlexBox";
 
 
 

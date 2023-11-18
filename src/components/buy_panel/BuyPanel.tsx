@@ -1,5 +1,5 @@
 import { Text, Flex} from "@radix-ui/themes";
-import PricePerUnit from "./PricePerUnit";
+import PricePerUnit from "../price_per_unit/PricePerUnit";
 import "./BuyPanel.css";
 
 

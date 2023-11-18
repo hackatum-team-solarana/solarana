@@ -1,6 +1,6 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import App from "../App.tsx";
-import Buy from '../pages/Buy.tsx';
+import Buy from '../pages/buy/Buy.tsx';
 
 /**
  * Returns the pathname of the current Base URL

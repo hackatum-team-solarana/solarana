@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import BuyPanel from "./BuyPanel";
-import { BuyPanelParams } from "./BuyPanel";
+import BuyPanel from "../buy_panel/BuyPanel";
+import { BuyPanelParams } from "../buy_panel/BuyPanel";
 import "./BuyPanelsFlexBox.css";
 
 
