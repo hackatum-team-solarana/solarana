@@ -1,6 +1,7 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import LandingPage from "../pages/landing_page/LandingPage.tsx";
 import {useWallet} from "@solana/wallet-adapter-react";
+import Dashboard from "../pages/dashboard/Dashboard.tsx";
 
 /**
  * Returns the pathname of the current Base URL
@@ -23,7 +24,7 @@ function Routing() {
             <Routes>
                 <Route path="/" element={<LandingPage/>}/>
                 {connected && (
-                    <Route path="/dashboard" element={<LandingPage/>}/>
+                    <Route path="/dashboard" element={<Dashboard/>}/>
                 )}
             </Routes>
         </BrowserRouter>
