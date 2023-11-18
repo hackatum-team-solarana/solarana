@@ -1,5 +1,5 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import App from "../App.tsx";
+import LandingPage from "../pages/landing_page/LandingPage.tsx";
 
 /**
  * Returns the pathname of the current Base URL
@@ -19,7 +19,7 @@ function Routing() {
     return (
         <BrowserRouter basename={getPathname()}>
             <Routes>
-                <Route path="/" element={<App/>}/>
+                <Route path="/" element={<LandingPage/>}/>
             </Routes>
         </BrowserRouter>
     );
