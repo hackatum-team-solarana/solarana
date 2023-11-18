@@ -9,9 +9,9 @@ interface Values {
     region: string,
     age: number,
     size: number,
-    totalAmount: number,
     availableAmount: number,
     kWhUnit: number,
+    pricePerUnit: number
 }
 
 
@@ -21,9 +21,9 @@ function RegistrationBox(props: { setValues: Dispatch<SetStateAction<Values | nu
     const [region, setRegion] = useState<string | null>(null);
     const ageRef = useRef<HTMLInputElement | null>(null);
     const sizeRef = useRef<HTMLInputElement | null>(null);
-    const totalAmountRef = useRef<HTMLInputElement | null>(null);
     const availableAmountRef = useRef<HTMLInputElement | null>(null);
     const kWhUnitRef = useRef<HTMLInputElement | null>(null);
+    const pricePerUnitRef = useRef<HTMLInputElement | null>(null);
 
 
     const [open, setOpen] = useState<boolean>(false);
@@ -41,38 +41,46 @@ function RegistrationBox(props: { setValues: Dispatch<SetStateAction<Values | nu
         }
 
         if (!ageRef.current?.value || !Number.isInteger(Number(ageRef.current?.value))) {
+            setRegion(region);
             setError("Age has to be a value without decimals!");
             return;
         }
 
-        if (!totalAmountRef.current?.value || !Number.isInteger(Number(totalAmountRef.current?.value))) {
-            setError("Total Amount has to be a value without decimals!");
-            return;
-        }
 
         if (!availableAmountRef.current?.value || !Number.isInteger(Number(availableAmountRef.current?.value))) {
+            setRegion(region);
             setError("Available Amount has to be a value without decimals!");
             return;
         }
 
 
         if (!sizeRef.current?.value || !parseFloat(sizeRef.current?.value)) {
+            setRegion(region);
             setError("Size has to be a value!");
             return;
         }
 
         if (!kWhUnitRef.current?.value || !parseFloat(kWhUnitRef.current?.value)) {
+            setRegion(region);
             setError("kWh/unit has to be a value!");
             return;
         }
+
+        if (!pricePerUnitRef.current?.value || !Number.isInteger(Number(pricePerUnitRef.current?.value))) {
+            setRegion(region);
+            setError("Price Per Unit has to be a value without decimals!");
+            return;
+        }
+
+
         setValues(
             {
                 region: region,
                 age: Number(ageRef.current?.value),
                 size: parseFloat(sizeRef.current?.value),
-                totalAmount: Number(totalAmountRef.current?.value),
                 availableAmount: Number(availableAmountRef.current?.value),
                 kWhUnit: parseFloat(kWhUnitRef.current?.value),
+                pricePerUnit: parseFloat(pricePerUnitRef.current?.value),
             }
         )
         setOpen(false);
@@ -109,15 +117,10 @@ function RegistrationBox(props: { setValues: Dispatch<SetStateAction<Values | nu
                         </label>
                         <input className="Input" id="size" defaultValue="" ref={sizeRef}/>
                     </fieldset>
-                    <fieldset className="Fieldset">
-                        <label className="Label" htmlFor="total amount">
-                            Total Amount
-                        </label>
-                        <input className="Input" id="total amount" defaultValue="" ref={totalAmountRef}/>
-                    </fieldset>
+
                     <fieldset className="Fieldset">
                         <label className="Label" htmlFor="available amount">
-                            Available Amount
+                            Available Amount in %
                         </label>
                         <input className="Input" id="available amount" defaultValue="" ref={availableAmountRef}/>
                     </fieldset>
@@ -126,6 +129,12 @@ function RegistrationBox(props: { setValues: Dispatch<SetStateAction<Values | nu
                             kWh/unit
                         </label>
                         <input className="Input" id="kwh/unit" defaultValue="" ref={kWhUnitRef}/>
+                    </fieldset>
+                    <fieldset className="Fieldset">
+                        <label className="Label" htmlFor="price per unit">
+                            Price Per Unit in $
+                        </label>
+                        <input className="Input" id="available amount" defaultValue="" ref={pricePerUnitRef}/>
                     </fieldset>
                     {error && <Text style={{color: "red"}}>{error}</Text>}
                     <div style={{display: 'flex', marginTop: 25, justifyContent: 'flex-end'}}>
