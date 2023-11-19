@@ -1,0 +1,170 @@
+openapi: 3.1.0
+info:
+  title: FastAPI
+  version: 0.1.0
+paths:
+  /marketplace/order:
+    get:
+      tags:
+      - Message
+      summary: Get Offer
+      operationId: get_offer_marketplace_order_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/OfferGet'
+                type: array
+                title: Response Get Offer Marketplace Order Get
+    post:
+      tags:
+      - Message
+      summary: Post Offer
+      operationId: post_offer_marketplace_order_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OfferPost'
+        required: true
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OfferGet'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    Bundesland:
+      type: string
+      enum:
+      - "Baden-W\xFCrttemberg"
+      - Bayern
+      - Berlin
+      - Brandenburg
+      - Bremen
+      - Hamburg
+      - Hessen
+      - Niedersachsen
+      - Mecklenburg-Vorpommern
+      - Nordrhein-Westfalen
+      - Rheinland-Pfalz
+      - Saarland
+      - Sachsen
+      - Sachsen-Anhalt
+      - Schleswig-Holstein
+      - "Th\xFCringen"
+      title: Bundesland
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    OfferGet:
+      properties:
+        owner_pk:
+          type: string
+          title: Owner Pk
+        age:
+          type: integer
+          title: Age
+        amount:
+          type: integer
+          title: Amount
+        price:
+          type: integer
+          title: Price
+        region:
+          $ref: '#/components/schemas/Bundesland'
+        size:
+          type: number
+          title: Size
+        power:
+          type: number
+          title: Power
+        offer_id:
+          type: integer
+          title: Offer Id
+        created_at:
+          type: string
+          format: date-time
+          title: Created At
+      type: object
+      required:
+      - owner_pk
+      - age
+      - amount
+      - price
+      - region
+      - size
+      - power
+      - offer_id
+      - created_at
+      title: OfferGet
+    OfferPost:
+      properties:
+        owner_pk:
+          type: string
+          title: Owner Pk
+        age:
+          type: integer
+          title: Age
+        amount:
+          type: integer
+          title: Amount
+        price:
+          type: integer
+          title: Price
+        region:
+          $ref: '#/components/schemas/Bundesland'
+        size:
+          type: number
+          title: Size
+        power:
+          type: number
+          title: Power
+      type: object
+      required:
+      - owner_pk
+      - age
+      - amount
+      - price
+      - region
+      - size
+      - power
+      title: OfferPost
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
