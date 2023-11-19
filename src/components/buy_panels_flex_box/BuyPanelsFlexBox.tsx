@@ -41,7 +41,8 @@ function BuyPanelsFlexBox() {
                 })));
             }
         });
-    }, [])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [messageApi]);
 
     return (
         <div>
