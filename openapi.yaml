@@ -6,30 +6,69 @@ paths:
   /marketplace/order:
     get:
       tags:
-      - Message
+        - Message
       summary: Get Offer
       operationId: get_offer_marketplace_order_get
+      parameters:
+        - name: max_age
+          in: query
+          required: false
+          schema:
+            anyOf:
+              - type: integer
+              - type: 'null'
+            title: Max Age
+        - name: max_price
+          in: query
+          required: false
+          schema:
+            anyOf:
+              - type: integer
+              - type: 'null'
+            title: Max Price
+        - name: min_power
+          in: query
+          required: false
+          schema:
+            anyOf:
+              - type: number
+              - type: 'null'
+            title: Min Power
+        - name: region
+          in: query
+          required: false
+          schema:
+            anyOf:
+              - $ref: '#/components/schemas/Bundesland'
+              - type: 'null'
+            title: Region
       responses:
         '200':
           description: Successful Response
           content:
             application/json:
               schema:
+                type: array
                 items:
                   $ref: '#/components/schemas/OfferGet'
-                type: array
                 title: Response Get Offer Marketplace Order Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
     post:
       tags:
-      - Message
+        - Message
       summary: Post Offer
       operationId: post_offer_marketplace_order_post
       requestBody:
+        required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/OfferPost'
-        required: true
       responses:
         '201':
           description: Successful Response
@@ -48,22 +87,22 @@ components:
     Bundesland:
       type: string
       enum:
-      - "Baden-W\xFCrttemberg"
-      - Bayern
-      - Berlin
-      - Brandenburg
-      - Bremen
-      - Hamburg
-      - Hessen
-      - Niedersachsen
-      - Mecklenburg-Vorpommern
-      - Nordrhein-Westfalen
-      - Rheinland-Pfalz
-      - Saarland
-      - Sachsen
-      - Sachsen-Anhalt
-      - Schleswig-Holstein
-      - "Th\xFCringen"
+        - "Baden-W\xFCrttemberg"
+        - Bayern
+        - Berlin
+        - Brandenburg
+        - Bremen
+        - Hamburg
+        - Hessen
+        - Niedersachsen
+        - Mecklenburg-Vorpommern
+        - Nordrhein-Westfalen
+        - Rheinland-Pfalz
+        - Saarland
+        - Sachsen
+        - Sachsen-Anhalt
+        - Schleswig-Holstein
+        - "Th\xFCringen"
       title: Bundesland
     HTTPValidationError:
       properties:
@@ -105,15 +144,15 @@ components:
           title: Created At
       type: object
       required:
-      - owner_pk
-      - age
-      - amount
-      - price
-      - region
-      - size
-      - power
-      - offer_id
-      - created_at
+        - owner_pk
+        - age
+        - amount
+        - price
+        - region
+        - size
+        - power
+        - offer_id
+        - created_at
       title: OfferGet
     OfferPost:
       properties:
@@ -139,21 +178,21 @@ components:
           title: Power
       type: object
       required:
-      - owner_pk
-      - age
-      - amount
-      - price
-      - region
-      - size
-      - power
+        - owner_pk
+        - age
+        - amount
+        - price
+        - region
+        - size
+        - power
       title: OfferPost
     ValidationError:
       properties:
         loc:
           items:
             anyOf:
-            - type: string
-            - type: integer
+              - type: string
+              - type: integer
           type: array
           title: Location
         msg:
@@ -164,7 +203,7 @@ components:
           title: Error Type
       type: object
       required:
-      - loc
-      - msg
-      - type
+        - loc
+        - msg
+        - type
       title: ValidationError

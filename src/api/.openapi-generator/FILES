@@ -1,0 +1,17 @@
+.gitignore
+.npmignore
+.openapi-generator-ignore
+api.ts
+apis/message-api.ts
+base.ts
+common.ts
+configuration.ts
+git_push.sh
+index.ts
+models/bundesland.ts
+models/httpvalidation-error.ts
+models/index.ts
+models/offer-get.ts
+models/offer-post.ts
+models/validation-error-loc-inner.ts
+models/validation-error.ts
