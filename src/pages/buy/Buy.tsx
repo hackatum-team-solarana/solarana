@@ -1,9 +1,12 @@
 import background from "../../assets/background.jpeg";
 import BuyPanelsFlexBox from "../../components/buy_panels_flex_box/BuyPanelsFlexBox";
 import './Buy.css'
+import Profile from "../../components/avatar/Profile.tsx";
+import AvatarInformation from "../../components/dropdown_menu/AvatarInformation.tsx";
 
 
 function Buy() {
+
     return (
         <main style={{
             backgroundImage: `url(${background})`,
@@ -47,13 +50,16 @@ function Buy() {
                         borderRight: "30px solid transparent"
                     }}>
                     </div>
-                    
+
                     <div style={{marginTop: "10px"}}>
-                        <BuyPanelsFlexBox></BuyPanelsFlexBox>
+                        <BuyPanelsFlexBox />
                     </div>
                     <div style={{height: "40px"}}/>
                 </div>
             </div>
+            <AvatarInformation>
+                <Profile/>
+            </AvatarInformation>
         </main>
     );
 }

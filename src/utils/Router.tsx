@@ -2,9 +2,6 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import LandingPage from "../pages/landing_page/LandingPage.tsx";
 import {useWallet} from "@solana/wallet-adapter-react";
 import Dashboard from "../pages/dashboard/Dashboard.tsx";
-import AvatarInformation from "../components/dropdown_menu/AvatarInformation.tsx";
-import Profile from "../components/avatar/Profile.tsx";
-import App from "../App.tsx";
 import Buy from '../pages/buy/Buy.tsx';
 import ErrorPage from '../pages/error_page/ErrorPage.tsx';
 
@@ -30,16 +27,13 @@ function Routing() {
             <Routes>
                 <Route path="/" element={<LandingPage/>}/>
                 {connected && (
-                    <Route path="/dashboard" element={<Dashboard/>}/>
+                    <>
+                        <Route path="/dashboard" element={<Dashboard/>}/>
+                        <Route path="/buy" element={<Buy/>}/>
+                    </>
                 )}
-                <Route path='*' element={<ErrorPage />} />
+                <Route path='*' element={<ErrorPage/>}/>
             </Routes>
-            <Routes>
-                <Route path="/buy" element={<Buy/>}/>
-            </Routes>
-            <AvatarInformation>
-                <Profile/>
-            </AvatarInformation>
         </BrowserRouter>
     );
 }

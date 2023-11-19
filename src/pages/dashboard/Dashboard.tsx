@@ -10,6 +10,8 @@ import {Buffer} from 'buffer';
 window.Buffer = Buffer;
 import './styleDashboard.css';
 import {useNavigate} from "react-router-dom";
+import Profile from "../../components/avatar/Profile.tsx";
+import AvatarInformation from "../../components/dropdown_menu/AvatarInformation.tsx";
 
 interface Values {
     region: string,
@@ -23,8 +25,8 @@ interface Values {
 
 
 function Dashboard() {
-    const [currentVal, _setCurrentVal] = useState(200);
-    const [_newPanel, setNewPanel] = useState<Values | null>(null);
+    const [currentVal, ] = useState(200);
+    const [, setNewPanel] = useState<Values | null>(null);
     const navigate = useNavigate();
 
     const goToPageOnClick = () => {
@@ -89,6 +91,9 @@ function Dashboard() {
                     <div style={{height: "40px"}}/>
                 </div>
             </div>
+            <AvatarInformation>
+                <Profile/>
+            </AvatarInformation>
         </main>
     );
 }
