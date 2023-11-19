@@ -9,6 +9,7 @@ import {Buffer} from 'buffer';
 
 window.Buffer = Buffer;
 import './styleDashboard.css';
+import {useNavigate} from "react-router-dom";
 
 interface Values {
     region: string,
@@ -19,13 +20,16 @@ interface Values {
     pricePerUnit: number,
 }
 
-const goToPageOnClick = () => {
-}
+
 
 function Dashboard() {
     const [currentVal, _setCurrentVal] = useState(200);
     const [_newPanel, setNewPanel] = useState<Values | null>(null);
+    const navigate = useNavigate();
 
+    const goToPageOnClick = () => {
+        navigate("/buy")
+    }
 
     return (
         <main style={{

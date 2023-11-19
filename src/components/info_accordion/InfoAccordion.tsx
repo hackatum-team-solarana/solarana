@@ -20,7 +20,7 @@ const AccordionDemo = () => (
         </Accordion.Item>
 
         <Accordion.Item className="AccordionItem" value="item-2">
-            <AccordionTrigger>What is Solana</AccordionTrigger>
+            <AccordionTrigger>What is Solana?</AccordionTrigger>
             <AccordionContent>
                 Solana, a high-performance blockchain, has rapidly emerged as a cornerstone of the decentralized
                 landscape. Known for its lightning-fast transaction speeds and low fees, Solana offers a seamless and
@@ -30,7 +30,7 @@ const AccordionDemo = () => (
         </Accordion.Item>
 
         <Accordion.Item className="AccordionItem" value="item-3">
-            <AccordionTrigger>How can I start</AccordionTrigger>
+            <AccordionTrigger>How can I start?</AccordionTrigger>
             <Accordion.Content className="AccordionContent">
                 <div className="AccordionContentText">
                     Choose a Solana-compatible wallet. Popular choices include Sollet, Phantom, and Solflare.
