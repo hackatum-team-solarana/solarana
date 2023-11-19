@@ -1,5 +1,6 @@
 import { Button } from "@radix-ui/themes";
 import {useNavigate} from "react-router-dom";
+import "./styleErrorPage.css"
 
 const ErrorPage = () => {
     const navigate = useNavigate();
