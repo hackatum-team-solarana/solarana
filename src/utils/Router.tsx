@@ -4,7 +4,10 @@ import {useWallet} from "@solana/wallet-adapter-react";
 import Dashboard from "../pages/dashboard/Dashboard.tsx";
 import AvatarInformation from "../components/dropdown_menu/AvatarInformation.tsx";
 import Profile from "../components/avatar/Profile.tsx";
+import App from "../App.tsx";
+import Buy from '../pages/buy/Buy.tsx';
 import ErrorPage from '../pages/error_page/ErrorPage.tsx';
+
 
 /**
  * Returns the pathname of the current Base URL
@@ -30,6 +33,9 @@ function Routing() {
                     <Route path="/dashboard" element={<Dashboard/>}/>
                 )}
                 <Route path='*' element={<ErrorPage />} />
+            </Routes>
+            <Routes>
+                <Route path="/buy" element={<Buy/>}/>
             </Routes>
             <AvatarInformation>
                 <Profile/>
