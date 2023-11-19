@@ -35,11 +35,18 @@ const AccordionDemo = () => (
                 <div className="AccordionContentText">
                     Choose a Solana-compatible wallet. Popular choices include Sollet, Phantom, and Solflare.
                     Create an account and securely store your recovery phrase. This phrase is crucial for accessing your
-                    funds and should be kept private.
+                    funds and should be kept private. <br/><br/>
+                    What can I do if I don't have a wallet yet? <br/>
+                    1. Install the phantom extention <a target="_blank" rel="noopener noreferrer" href="https://phantom.app">phantom wallet</a> <br/>
+                    2. Create a wallet <br/>
+                    3. Accept the connection
                 </div>
             </Accordion.Content>
         </Accordion.Item>
+
     </Accordion.Root>
+
+
 );
 
 const AccordionTrigger = React.forwardRef(({children, className, ...props}, forwardedRef) => (

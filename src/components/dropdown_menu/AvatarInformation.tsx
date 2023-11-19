@@ -39,13 +39,7 @@ function AvatarInformation(props: { children: React.ReactNode }) {
                         width: "200px",
                         marginTop: "50px"
                     }}>{publicKey?.toJSON()}</Text>
-                    <Button style={{
-                        backgroundColor: "#009989",
-                        width: "200px",
-                        height: "50px",
-                        opacity: "50%",
-                        marginTop: "60px"
-                    }}
+                    <Button className={"logoutButton"}
                             onClick={async () => {
                                 await disconnect();
                                 localStorage.clear();

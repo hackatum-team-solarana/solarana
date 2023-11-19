@@ -33,3 +33,7 @@
     line-height: 1;
     font-weight: 500;
 }
+
+.AvatarImage:hover{
+    opacity: 80%;
+}
