@@ -1,17 +1,14 @@
-// @ts-ignore
-
 import background from "../../assets/media/background.jpeg";
 import SemiDonutChart from "../../components/semi_donut_chart/SemiDonutChart.tsx";
 import {useState} from "react";
 import { Button, Heading, Text} from "@radix-ui/themes";
 import InvestmentCardPanelsFlexBox from "../../components/investments_card/InvestmentCardPanelsFlexBox.tsx";
 import RegistrationBox from "../../components/registration_box/RegsitrationBox.tsx";
-import { Buffer } from 'buffer';
+import {Buffer} from 'buffer';
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
 window.Buffer = Buffer;
 import './styleDashboard.css';
-import {useNavigate} from "react-router-dom";
 
 interface Values {
     region: string,
@@ -23,7 +20,6 @@ interface Values {
 }
 
 const goToPageOnClick = () => {
-    useNavigate();
 }
 
 function Dashboard() {
