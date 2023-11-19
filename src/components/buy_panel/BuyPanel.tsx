@@ -11,7 +11,7 @@ interface BuyPanelParams  {
     totalAmount: number,
     availableAmount: number,
     price: number,
-};
+}
 
 
 function BuyPanel(props: BuyPanelParams) {
