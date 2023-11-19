@@ -44,6 +44,8 @@ function RegistrationBox(props: { setValues: Dispatch<SetStateAction<Values | nu
     const handleClick = () => {
         setError(null);
         setRegion(null);
+
+        console.log(region)
         if (!publicKey) {
             setError("Please log in with your wallet to continue");
             return;

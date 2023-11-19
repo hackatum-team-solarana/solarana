@@ -78,7 +78,9 @@ function BuyFilterButtons(props : {
                 </Dialog.Content>
             </Dialog.Portal>
         </Dialog.Root>
+
     )
+
 }
 
 export default BuyFilterButtons

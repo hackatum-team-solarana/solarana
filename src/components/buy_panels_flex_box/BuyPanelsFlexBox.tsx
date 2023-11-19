@@ -4,6 +4,7 @@ import {BuyPanelParams} from "../buy_panel/BuyPanel";
 import "./BuyPanelsFlexBox.css";
 import BuyFilterButtons from "../buy_filter_buttons/BuyFilterButtons";
 import {Bundesland, Configuration, ConfigurationParameters, MessageApi} from "../../api";
+import {Heading} from "@radix-ui/themes";
 
 function BuyPanelsFlexBox() {
     const [panels, setPanels] = useState<BuyPanelParams[]>([]);
@@ -44,9 +45,13 @@ function BuyPanelsFlexBox() {
 
     return (
         <div>
+            <Heading size={"8"} weight={"bold"} style={{paddingLeft: "30px"}}>
+                Buy new solar panels:
+            </Heading>
             <div style={{textAlign: "center"}}>
                 <BuyFilterButtons setRegion={setRegion} ageRef={ageRef} priceRef={priceRef} powerRef={powerRef}/>
             </div>
+
             <div className="container-buy">
                 {panels.map(panel => <div className="item-buy"><BuyPanel {...panel} /></div>)}
 

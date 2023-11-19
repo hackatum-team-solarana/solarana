@@ -32,13 +32,19 @@ function AvatarInformation(props: { children: React.ReactNode }) {
                     alignItems: "center",
                     marginTop: "10px",
                 }}>
-                    <Heading style={{marginTop: "30px"}}>Current Hash</Heading>
+                    <Heading style={{marginTop: "30px"}}>Wallet Hash</Heading>
                     <Text style={{
                         fontWeight: "bold",
                         textOverflow: "hidden",
                         width: "200px",
-                        marginTop: "50px"
+                        marginTop: "30px"
                     }}>{publicKey?.toJSON()}</Text>
+                    <Button className={"logoutButton"}
+                            onClick={() => {
+                                navigate("/dashboard");
+                            }}>
+                        To my profile
+                    </Button>
                     <Button className={"logoutButton"}
                             onClick={async () => {
                                 await disconnect();
@@ -48,6 +54,7 @@ function AvatarInformation(props: { children: React.ReactNode }) {
                             }}>
                         Logout
                     </Button>
+
                 </div>
             </div>
         </div>

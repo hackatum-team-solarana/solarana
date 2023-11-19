@@ -3,6 +3,7 @@ import BuyPanelsFlexBox from "../../components/buy_panels_flex_box/BuyPanelsFlex
 import './Buy.css'
 import Profile from "../../components/avatar/Profile.tsx";
 import AvatarInformation from "../../components/dropdown_menu/AvatarInformation.tsx";
+import "./Buy.css"
 
 
 function Buy() {
