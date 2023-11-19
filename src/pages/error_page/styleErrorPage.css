@@ -1,12 +1,4 @@
-.price-per-unit {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-}
-
-.BuyButtonNow{
+.BackToHomeButton1{
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -23,7 +15,7 @@
     margin-right: 15px;
 }
 
-.BuyButtonNow:hover{
-        background-color: #009989;
-        opacity: 58%;
+.BackToHomeButton1:hover{
+    background-color: #009989;
+    opacity: 58%;
 }

@@ -127,7 +127,7 @@ function RegistrationBox(props: { setValues: Dispatch<SetStateAction<Values | nu
     return (
         <Dialog.Root open={open} onOpenChange={setOpen}>
             <Dialog.Trigger asChild>
-                <button className="Button violet">Register your solar panel</button>
+                <button className="ButtonRegisterNow">Register your solar panel</button>
             </Dialog.Trigger>
             <Dialog.Portal>
                 <Dialog.Overlay className="DialogOverlay"/>
