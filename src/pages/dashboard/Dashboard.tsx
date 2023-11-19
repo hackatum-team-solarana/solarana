@@ -25,7 +25,7 @@ interface Values {
 
 
 function Dashboard() {
-    const [currentVal, ] = useState(200);
+    const [currentVal, ] = useState(950);
     const [, setNewPanel] = useState<Values | null>(null);
     const navigate = useNavigate();
 

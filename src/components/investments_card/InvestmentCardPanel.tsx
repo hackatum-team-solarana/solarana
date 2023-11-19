@@ -19,7 +19,7 @@ function BuyPanel(props: BuyPanelParams) {
     const {provider, region, ageInYears, powerPerUnit, amountYouOwn, winThisMonth, totalWin} = props;
     return (
         <div className="wrap">
-            <h4><Text>25qm Solarpanel</Text></h4>
+            <h4><Text>Solarpanel</Text></h4>
             <Flex gap="3" align="center">
                 <div className="grid-container">
 
