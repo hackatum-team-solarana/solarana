@@ -1,5 +1,6 @@
 import { Button } from "@radix-ui/themes";
 import {useNavigate} from "react-router-dom";
+import "./styleErrorPage.css"
 
 const ErrorPage = () => {
     const navigate = useNavigate();
@@ -9,7 +10,7 @@ const ErrorPage = () => {
             <div >
                 <h1>Page not found</h1>
                 <p>The site you were looking for, doesn't exist.</p>
-                <Button onClick={() => {
+                <Button className={"BackToHomeButton1"} onClick={() => {
                     navigate("/");
                 }}>Back to home page</Button>
             </div>

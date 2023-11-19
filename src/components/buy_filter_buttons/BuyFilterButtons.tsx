@@ -31,7 +31,7 @@ function BuyFilterButtons(props : {
     return (
         <Dialog.Root open={open} onOpenChange={setOpen}>
             <Dialog.Trigger asChild>
-                <button className="Button violet">Filter</button>
+                <button className="ButtonFilterKlapp">Filter</button>
             </Dialog.Trigger>
             <Dialog.Portal>
                 <Dialog.Overlay className="DialogOverlay"/>
