@@ -9,7 +9,7 @@ import {Buffer} from "buffer";
 function useRegisterPanel() {
     const {publicKey, wallet, sendTransaction} = useWallet();
 
-    const registerPanel = async (region: string, apu: number, power: number, ppu: BN, age: BN) => {
+    const registerPanel = async (region: BN, apu: number, power: number, ppu: BN, age: BN) => {
 
         if (!publicKey || !wallet) {
             return;

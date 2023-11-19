@@ -5,6 +5,7 @@ import DropdownRegistrationBox from "./DropdownRegistrationBox.tsx";
 import {Dispatch, SetStateAction, useRef, useState} from "react";
 import {Text} from "@radix-ui/themes";
 import useRegisterPanel from '../../hooks/useRegisterPanel.tsx';
+import {BN} from "@project-serum/anchor";
 
 interface Values {
     region: string,
@@ -89,7 +90,7 @@ function RegistrationBox(props: { setValues: Dispatch<SetStateAction<Values | nu
 
         const areaPerUnit = parseFloat(sizeRef.current?.value) / 1000;
 
-        registerPanel(region, areaPerUnit, parseFloat(sizeRef.current?.value), 0, Number(ageRef.current?.value));
+        registerPanel(new BN(7) /* TODO */, areaPerUnit, parseFloat(sizeRef.current?.value), new BN(0), new BN(ageRef.current?.value));
         setOpen(false);
 
     }
