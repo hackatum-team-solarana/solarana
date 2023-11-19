@@ -90,7 +90,7 @@ function RegistrationBox(props: { setValues: Dispatch<SetStateAction<Values | nu
 
         const areaPerUnit = parseFloat(sizeRef.current?.value) / 1000;
 
-        registerPanel(new BN(7) /* TODO */, areaPerUnit, parseFloat(sizeRef.current?.value), new BN(0), new BN(ageRef.current?.value));
+        registerPanel(new BN(7) /* TODO */, areaPerUnit, parseFloat(kWhUnitRef.current?.value), new BN(parseFloat(pricePerUnitRef.current?.value)), new BN(ageRef.current?.value));
         setOpen(false);
 
     }
