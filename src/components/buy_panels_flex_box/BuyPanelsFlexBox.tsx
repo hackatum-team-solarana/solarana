@@ -31,7 +31,7 @@ function BuyPanelsFlexBox() {
         ).then(response => {
             if (response.status === 200) {
                 setPanels(response.data.map(panel => ({
-                    provider: panel.owner_pk.substring(0, 5) + "...",
+                    provider: panel.owner_pk,
                     region: panel.region,
                     ageInYears: panel.age,
                     powerPerUnit: panel.power,
@@ -53,7 +53,7 @@ function BuyPanelsFlexBox() {
             </div>
 
             <div className="container-buy">
-                {panels.map(panel => <div className="item-buy"><BuyPanel {...panel} /></div>)}
+                {panels.map(panel => <div className="item-buy"><BuyPanel key={panel.provider} {...panel} /></div>)}
 
             </div>
         </div>

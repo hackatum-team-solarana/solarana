@@ -1,9 +1,10 @@
-import {AnchorProvider, Program} from "@project-serum/anchor";
+import { Program } from "@project-serum/anchor";
 import {BN} from "@project-serum/anchor";
 import {useAnchorWallet, useWallet} from "@solana/wallet-adapter-react";
-import { clusterApiUrl, Commitment, Connection, PublicKey, SystemProgram, Transaction, TransactionInstruction } from "@solana/web3.js";
-
+import { PublicKey, SystemProgram, Transaction, TransactionInstruction } from "@solana/web3.js";
+import { PROGRAM_ID, tokenProgram, aTokenPK, opts, getProvider, randomString, generateMintToken } from "./utils";
 import idl from "../assets/idl.json";
+
 import {Buffer} from "buffer";
 
 function useRegisterPanel() {
@@ -16,30 +17,10 @@ function useRegisterPanel() {
             return;
         }
 
-        const PROGRAM_ID = new PublicKey("6X6MoaaQDpcGDgtXzCwQgwzinS6tUoZdAHcu4kqhNvho");
-        const getTokenProgram = () => new PublicKey("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA")
-        const getATokenPK = () => new PublicKey("ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL")
 
-        const opts: { preflightCommitment: Commitment } = {
-            preflightCommitment: "processed"
-        }
-
-        async function getProvider() {
-            /* create the provider and return it to the caller */
-            /* network set to local network for now */
-            const network = clusterApiUrl("devnet");
-            const connection = new Connection(network, opts.preflightCommitment);
-
-            const provider = new AnchorProvider(
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-expect-error
-                connection, wallet, opts.preflightCommitment,
-            );
-            return provider;
-        }
-
-
-        const randomString = () => (new BN(Math.random() * Math.pow(2, 32))).toString();
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        const program = new Program(idl, PROGRAM_ID, await getProvider(wallet));
 
 
         const generatePanel = async (): Promise<[ PublicKey, TransactionInstruction ]> => {
@@ -68,39 +49,9 @@ function useRegisterPanel() {
                 .instruction();
               
             return [ panelPk, callRegisterPanel ];
-          }
-          
-          
-          const generateMintToken = async (): Promise<[ PublicKey, TransactionInstruction ]> => {
-            const random = randomString();
-          
-            const [mintTokenPk] = await PublicKey.findProgramAddress(
-              [
-                Buffer.from("token-mint"),
-                wallet.publicKey.toBuffer(),
-                Buffer.from(random),
-              ],
-              PROGRAM_ID
-            );
-            console.log("mintTokenPk", mintTokenPk.toString());
-          
-            const callInitTokenMint = await program.methods
-              .initTokenMint(random)
-              .accounts({
-                newTokenMint: mintTokenPk,
-                signer: wallet.publicKey,
-              })
-              .instruction();
-          
-            return [ mintTokenPk, callInitTokenMint ];
-          }
+        }
 
-
-        const provider = await getProvider()
         /* create the program interface combining the idl, program ID, and provider */
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
-        const program = new Program(idl, PROGRAM_ID, provider);
 
         /*const [tokenMintPk] = await PublicKey.findProgramAddress(
             [Buffer.from("token-mint"), publicKey.toBuffer()],
@@ -117,9 +68,7 @@ function useRegisterPanel() {
                 Buffer.from(randomNumber.toString()),
             ],
             PROGRAM_ID
-        );*/
-
-        const tokenProgramPK = getTokenProgram();
+        );*/;
 
         const transaction = new Transaction();
 
@@ -139,16 +88,20 @@ function useRegisterPanel() {
         })
         .instruction();
 
-        const [ mintTokenPk, callInitTokenMint ] = await generateMintToken();
+        const [ mintTokenPk, callInitTokenMint ] = await generateMintToken(wallet, program);
+
+        if (!mintTokenPk || !callInitTokenMint) {
+            return;
+        }
 
         // Send transaction
         const recipientATA = PublicKey.findProgramAddressSync(
             [
                 wallet.publicKey.toBuffer(),
-                tokenProgramPK.toBuffer(),
+                tokenProgram.toBuffer(),
                 mintTokenPk.toBuffer(),
             ],
-            getATokenPK()
+            aTokenPK
         )[0];
 
         const callOwnerMintToken = await program.methods
@@ -157,18 +110,18 @@ function useRegisterPanel() {
             newRecipient: recipientATA,
             owner: wallet.publicKey,
             tokenMint: mintTokenPk,
-            tokenProgram: tokenProgramPK,
+            tokenProgram: tokenProgram,
         })
         .instruction();
 
         transaction.add(callRegisterPanel, callInitializePanel, callInitTokenMint, callOwnerMintToken);
         transaction.recentBlockhash = (
-            await (await getProvider()).connection.getLatestBlockhash()
+            await (await getProvider(wallet)).connection.getLatestBlockhash()
         ).blockhash;
         transaction.feePayer = publicKey;
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-expect-error
-        const signature = await sendTransaction(transaction, (await getProvider()).connection, opts.preflightCommitment, { skipPreflight: true });
+        const signature = await sendTransaction(transaction, (await getProvider(wallet)).connection, opts.preflightCommitment, { skipPreflight: true });
         console.log(signature);
     }
 
@@ -177,8 +130,6 @@ function useRegisterPanel() {
     }
 
 }
-
-
 
 
 export default useRegisterPanel;

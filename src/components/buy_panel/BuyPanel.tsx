@@ -29,7 +29,7 @@ function BuyPanel(props: BuyPanelParams) {
                         <div className="grid-item-buy-panel"></div>
          
                         <div className="grid-item-buy-panel"><Text size="2">provider:</Text></div>
-                        <div className="grid-item-buy-panel"><Text size="2">{ provider }</Text></div>
+                        <div className="grid-item-buy-panel"><Text size="2">{ provider.substring(0, 5) + "..." }</Text></div>
        
                         <div className="grid-item-buy-panel"><Text size="2">region:</Text></div>
                         <div className="grid-item-buy-panel"><Text size="2">{ region }</Text></div>
@@ -50,7 +50,7 @@ function BuyPanel(props: BuyPanelParams) {
                 </div>
                 
                 <div className="grid-item-above-buy-panel">
-                    <PricePerUnit price={price}/> 
+                    <PricePerUnit price={price} provider={provider} /> 
                 </div>
             
             </div>
