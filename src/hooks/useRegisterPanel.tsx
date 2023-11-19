@@ -1,13 +1,13 @@
 import {AnchorProvider, Program} from "@project-serum/anchor";
 import {BN} from "@project-serum/anchor";
 import {useAnchorWallet, useWallet} from "@solana/wallet-adapter-react";
-import { clusterApiUrl, Commitment, Connection, PublicKey, SystemProgram } from "@solana/web3.js";
+import { clusterApiUrl, Commitment, Connection, PublicKey, SystemProgram, Transaction, TransactionInstruction } from "@solana/web3.js";
 
 import idl from "../assets/idl.json";
 import {Buffer} from "buffer";
 
 function useRegisterPanel() {
-    const {publicKey} = useWallet();
+    const {publicKey, sendTransaction} = useWallet();
     const wallet = useAnchorWallet();
 
     const registerPanel = async (region: BN, apu: number, power: number, ppu: BN, age: BN) => {
@@ -42,58 +42,58 @@ function useRegisterPanel() {
         const randomString = () => (new BN(Math.random() * Math.pow(2, 32))).toString();
 
 
-        const generatePanel = async () => {
+        const generatePanel = async (): Promise<[ PublicKey, TransactionInstruction ]> => {
             const random = randomString();
-
+          
             const [panelPk] = await PublicKey.findProgramAddress(
-                [
+              [
                 Buffer.from("panel"),
-                publicKey.toBuffer(),
+                wallet.publicKey.toBuffer(),
                 Buffer.from(random)
                 // Buffer.from("1"),
                 // Buffer.from(randomInt.toString()),
-                ],
-                PROGRAM_ID
+              ],
+              PROGRAM_ID
             );
             console.log("panelPk", panelPk.toString());
-
-
-            await program.methods
+          
+          
+            const callRegisterPanel = await program.methods
                 .registerPanel(random)
                 .accounts({
-                    newPanel: panelPk,
-                    owner: publicKey,
-                    systemProgram: SystemProgram.programId,
+                  newPanel: panelPk,
+                  owner: wallet.publicKey,
+                  systemProgram: SystemProgram.programId,
                 })
-                .rpc();
-                
-            return panelPk;
-        }
-
-
-        const generateMintToken = async () => {
+                .instruction();
+              
+            return [ panelPk, callRegisterPanel ];
+          }
+          
+          
+          const generateMintToken = async (): Promise<[ PublicKey, TransactionInstruction ]> => {
             const random = randomString();
-
+          
             const [mintTokenPk] = await PublicKey.findProgramAddress(
-                [
+              [
                 Buffer.from("token-mint"),
-                publicKey.toBuffer(),
+                wallet.publicKey.toBuffer(),
                 Buffer.from(random),
-                ],
-                PROGRAM_ID
+              ],
+              PROGRAM_ID
             );
             console.log("mintTokenPk", mintTokenPk.toString());
-
-            await program.methods
-                .initTokenMint(random)
-                .accounts({
+          
+            const callInitTokenMint = await program.methods
+              .initTokenMint(random)
+              .accounts({
                 newTokenMint: mintTokenPk,
-                signer: publicKey,
-                })
-                .rpc();
-
-            return mintTokenPk;
-        }
+                signer: wallet.publicKey,
+              })
+              .instruction();
+          
+            return [ mintTokenPk, callInitTokenMint ];
+          }
 
 
         const provider = await getProvider()
@@ -119,65 +119,49 @@ function useRegisterPanel() {
             PROGRAM_ID
         );*/
 
-        const panelPk = await generatePanel();
-        console.log("panelPk", panelPk.toString());
-
         const tokenProgramPK = getTokenProgram();
 
-        await program.methods
-            .initializePanel(region, apu, power, ppu, age)
-            .accounts({
-                panel: panelPk
-            })
-            .rpc();
+        const transaction = new Transaction();
 
-        const mintTokenPk = await generateMintToken();
+        const [ panelPk, callRegisterPanel ] = await generatePanel();
+        console.log("panelPk", panelPk.toString());
+
+        const callInitializePanel = await program.methods
+        .initializePanel(
+            region,
+            apu,
+            power,
+            ppu,
+            age
+        )
+        .accounts({
+            panel: panelPk,
+        })
+        .instruction();
+
+        const [ mintTokenPk, callInitTokenMint ] = await generateMintToken();
 
         // Send transaction
         const recipientATA = PublicKey.findProgramAddressSync(
             [
-                publicKey.toBuffer(),
+                wallet.publicKey.toBuffer(),
                 tokenProgramPK.toBuffer(),
                 mintTokenPk.toBuffer(),
             ],
             getATokenPK()
         )[0];
 
-        /*const callRegisterPanel = await program.methods
-            .registerPanel(randomNumber)
-            .accounts({
-                newPanel: panelPk,
-                owner: publicKey,
-                systemProgram: SystemProgram.programId,
-            })
-            .instruction();
+        const callOwnerMintToken = await program.methods
+        .ownerMintToken()
+        .accounts({
+            newRecipient: recipientATA,
+            owner: wallet.publicKey,
+            tokenMint: mintTokenPk,
+            tokenProgram: tokenProgramPK,
+        })
+        .instruction();
 
-        const callInitializePanel = await program.methods
-            .initializePanel(region, apu, power, ppu, age)
-            .accounts({
-                panel: panelPk
-            })
-            .instruction();
-
-        const callInitTokenMint = await program.methods
-            .initTokenMint()
-            .accounts({
-                newTokenMint: tokenMintPk,
-                signer: publicKey,
-            })
-            .instruction()*/
-
-        await program.methods
-            .ownerMintToken()
-            .accounts({
-                newRecipient: recipientATA,
-                owner: publicKey,
-                tokenMint: mintTokenPk,
-                tokenProgram: tokenProgramPK,
-            })
-            .rpc();
-
-        /*transaction.add(callRegisterPanel, callInitializePanel, callInitTokenMint, callOwnerMintToken);
+        transaction.add(callRegisterPanel, callInitializePanel, callInitTokenMint, callOwnerMintToken);
         transaction.recentBlockhash = (
             await (await getProvider()).connection.getLatestBlockhash()
         ).blockhash;
@@ -185,7 +169,7 @@ function useRegisterPanel() {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-expect-error
         const signature = await sendTransaction(transaction, (await getProvider()).connection, opts.preflightCommitment, { skipPreflight: true });
-        console.log(signature);*/
+        console.log(signature);
     }
 
     return {
