@@ -40,12 +40,10 @@ function Dashboard() {
         <main style={{
             backgroundImage: `url(${background})`,
             backgroundSize: "cover",
-            height: "100vh",
             width: "100vw",
         }}>
             <div
                 style={{
-                    height: "100vh",
                     width: "100vw",
                     backgroundColor: "rgba(255, 255, 255, 0.5)",
                     display: "flex",
