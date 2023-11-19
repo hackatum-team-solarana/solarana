@@ -6,6 +6,8 @@ import AvatarInformation from "../components/dropdown_menu/AvatarInformation.tsx
 import Profile from "../components/avatar/Profile.tsx";
 import App from "../App.tsx";
 import Buy from '../pages/buy/Buy.tsx';
+import ErrorPage from '../pages/error_page/ErrorPage.tsx';
+
 
 /**
  * Returns the pathname of the current Base URL
@@ -30,6 +32,7 @@ function Routing() {
                 {connected && (
                     <Route path="/dashboard" element={<Dashboard/>}/>
                 )}
+                <Route path='*' element={<ErrorPage />} />
             </Routes>
             <Routes>
                 <Route path="/buy" element={<Buy/>}/>
