@@ -1,0 +1,28 @@
+.css-dreieck {
+    width: 0;
+    height: 0;
+
+    border-top: 20px solid transparent; /* skyblue */
+    border-right: 20px solid transparent; /* limegreen;  */
+    border-bottom: 20px solid white; /* orange; */
+    border-left: 20px solid transparent;
+    margin-bottom: 20px;
+}
+
+.logoutButton{
+    background-color: #009989;
+    opacity: 70%;
+    color: #ffffff;
+    box-shadow: 0 2px 10px var(--black-a7);
+    width: 200px;
+    height: 50px;
+    margin-top: 60px;
+}
+
+.logoutButton:hover {
+    background-color: #009989;
+    opacity: 58%;
+}
+.logoutButton:focus {
+    box-shadow: 0 0 0 2px black;
+}
