@@ -26,11 +26,11 @@ function BuyPanelsFlexBox() {
 
     return (
         <div>
-        <div>
+        <div style={{ textAlign:"center"}}>
             <BuyFilterButtons setRegion={setRegion} ageRef={ageRef} priceRef={priceRef} powerRef={powerRef}/>
         </div>
-        <div className="container">
-            {panels.map(panel => <div className="item"><BuyPanel {...panel} /></div>)}
+        <div className="container-buy">
+            {panels.map(panel => <div className="item-buy"><BuyPanel {...panel} /></div>)}
             
         </div>
         </div>

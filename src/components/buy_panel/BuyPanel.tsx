@@ -20,36 +20,36 @@ function BuyPanel(props: BuyPanelParams) {
         <div className="wrap">
             <h4><Text>25qm Solarpanel</Text></h4>
             <Flex gap="3" align="center">
-            <div className="grid-container">
+            <div className="grid-container-buy-panel">
                 
-                <div className="grid-item-above">
-                    <div className="grid-container">
+                <div className="grid-item-above-buy-panel">
+                    <div className="grid-container-buy-panel">
       
-                        <div className="grid-item"></div>
-                        <div className="grid-item"></div>
+                        <div className="grid-item-buy-panel"></div>
+                        <div className="grid-item-buy-panel"></div>
          
-                        <div className="grid-item"><Text size="2">provider:</Text></div>
-                        <div className="grid-item"><Text size="2">{ provider }</Text></div>
+                        <div className="grid-item-buy-panel"><Text size="2">provider:</Text></div>
+                        <div className="grid-item-buy-panel"><Text size="2">{ provider }</Text></div>
        
-                        <div className="grid-item"><Text size="2">region:</Text></div>
-                        <div className="grid-item"><Text size="2">{ region }</Text></div>
+                        <div className="grid-item-buy-panel"><Text size="2">region:</Text></div>
+                        <div className="grid-item-buy-panel"><Text size="2">{ region }</Text></div>
 
-                        <div className="grid-item"><Text size="2">age in years:</Text></div>
-                        <div className="grid-item"><Text size="2">{ ageInYears }</Text></div>
+                        <div className="grid-item-buy-panel"><Text size="2">age in years:</Text></div>
+                        <div className="grid-item-buy-panel"><Text size="2">{ ageInYears }</Text></div>
 
-                        <div className="grid-item"><Text size="2">kWh/unit:</Text></div>
-                        <div className="grid-item"><Text size="2">{ powerPerUnit }</Text></div>
+                        <div className="grid-item-buy-panel"><Text size="2">kWh/unit:</Text></div>
+                        <div className="grid-item-buy-panel"><Text size="2">{ powerPerUnit }</Text></div>
 
-                        <div className="grid-item"><Text size="2">total amount:</Text></div>
-                        <div className="grid-item"><Text size="2">{ totalAmount }</Text></div>
+                        <div className="grid-item-buy-panel"><Text size="2">total amount:</Text></div>
+                        <div className="grid-item-buy-panel"><Text size="2">{ totalAmount }</Text></div>
 
-                        <div className="grid-item"><Text size="2">available amount:</Text></div>
-                        <div className="grid-item"><Text size="2">{ availableAmount }</Text></div>
+                        <div className="grid-item-buy-panel"><Text size="2">available amount:</Text></div>
+                        <div className="grid-item-buy-panel"><Text size="2">{ availableAmount }</Text></div>
 
                     </div>
                 </div>
                 
-                <div className="grid-item-above">
+                <div className="grid-item-above-buy-panel">
                     <PricePerUnit price={price}/> 
                 </div>
             

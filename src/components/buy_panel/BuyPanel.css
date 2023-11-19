@@ -1,24 +1,26 @@
 /* Style for the grid container */
-.grid-container {
+.grid-container-buy-panel {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* 3 columns */
-    border: none;
+    border: 1px solid white;
     padding: 4px;
     justify-content: center;
     align-items: center;
   }
 
   /* Style for grid items (cells) */
-  .grid-item {
-    border: none;
+  .grid-item-buy-panel {
+    border: 1px solid white;
     padding: 4px;
     text-align: left;
   }
 
-  .grid-item-above {
-    border: none;
+  .grid-item-above-buy-panel {
+    border: 1px solid white;
     padding: 0px;
     text-align: center;
+    justify-content: center;
+    align-items: center;
   }
 
 .wrap {
