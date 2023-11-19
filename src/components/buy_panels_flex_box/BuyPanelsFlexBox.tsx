@@ -30,11 +30,7 @@ function BuyPanelsFlexBox() {
             <BuyFilterButtons setRegion={setRegion} ageRef={ageRef} priceRef={priceRef} powerRef={powerRef}/>
         </div>
         <div className="container">
-            {panels.filter(panel => (region === null || panel.region === region))
-            .filter(panel => (ageRef.current === null || ageRef === undefined || panel.ageInYears <= parseInt(ageRef!.current!.value)))
-            .filter(panel => (priceRef.current === null || priceRef === undefined || panel.price <= parseInt(priceRef!.current!.value)))
-            .filter(panel => ((powerRef.current === null || powerRef === undefined) || panel.powerPerUnit >= parseInt(powerRef!.current!.value))) 
-            .map(panel => <div className="item"><BuyPanel {...panel} /></div>)}
+            {panels.map(panel => <div className="item"><BuyPanel {...panel} /></div>)}
             
         </div>
         </div>

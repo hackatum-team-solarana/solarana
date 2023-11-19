@@ -1,17 +1,63 @@
-import BuyFilterButtons from "../../components/buy_filter_buttons/BuyFilterButtons";
+import background from "../../assets/background.jpeg";
 import BuyPanelsFlexBox from "../../components/buy_panels_flex_box/BuyPanelsFlexBox";
-
-
-
+import './Buy.css'
 
 
 function Buy() {
     return (
-        <div>
-            <BuyPanelsFlexBox></BuyPanelsFlexBox>
-
-        </div>
+        <main style={{
+            backgroundImage: `url(${background})`,
+            backgroundSize: "cover",
+            height: "100vh",
+            width: "100vw",
+        }}>
+            <div
+                style={{
+                    height: "100vh",
+                    width: "100vw",
+                    backgroundColor: "rgba(255, 255, 255, 0.5)",
+                    display: "flex",
+                    flexDirection: "row-reverse",
+                }}>
+                <div style={{
+                    position: "absolute",
+                    display: "flex",
+                    width: "100vw",
+                    justifyContent: "center",
+                    marginTop: "3%",
+                }}>
+                </div>
+                <div style={{
+                    position: "absolute",
+                    display: "flex",
+                    width: "100vw",
+                    justifyContent: "center",
+                    marginTop: "16%",
+                }}>
+                </div>
+                <div style={{
+                    marginTop: "20%",
+                    width: "100vw",
+                    backgroundColor: "white",
+                    minHeight: "55vw",
+                    borderRadius: "20px 20px 0 0",
+                }}>
+                    <div style={{
+                        marginTop: "30px",
+                        display: "flex",
+                        flexDirection: "row-reverse",
+                        borderRight: "30px solid transparent"
+                    }}>
+                    </div>
+                    
+                    <div style={{marginTop: "10px"}}>
+                        <BuyPanelsFlexBox></BuyPanelsFlexBox>
+                    </div>
+                    <div style={{height: "40px"}}/>
+                </div>
+            </div>
+        </main>
     );
-};
+}
 
 export default Buy
