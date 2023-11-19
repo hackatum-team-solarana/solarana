@@ -1,32 +1,9 @@
-import background from "../../assets/media/background.jpeg";
-import SemiDonutChart from "../../components/semi_donut_chart/SemiDonutChart.tsx";
-import {useState} from "react";
-import { Button, Heading, Text} from "@radix-ui/themes";
-import InvestmentCardPanelsFlexBox from "../../components/investments_card/InvestmentCardPanelsFlexBox.tsx";
-import RegistrationBox from "../../components/registration_box/RegsitrationBox.tsx";
-import {Buffer} from 'buffer';
+import background from "../../assets/background.jpeg";
+import BuyPanelsFlexBox from "../../components/buy_panels_flex_box/BuyPanelsFlexBox";
+import './Buy.css'
 
 
-window.Buffer = Buffer;
-import './styleDashboard.css';
-
-interface Values {
-    region: string,
-    age: number,
-    size: number,
-    availableAmount: number,
-    kWhUnit: number,
-    pricePerUnit: number,
-}
-
-const goToPageOnClick = () => {
-}
-
-function Dashboard() {
-    const [currentVal, _setCurrentVal] = useState(200);
-    const [_newPanel, setNewPanel] = useState<Values | null>(null);
-
-
+function Buy() {
     return (
         <main style={{
             backgroundImage: `url(${background})`,
@@ -47,7 +24,6 @@ function Dashboard() {
                     justifyContent: "center",
                     marginTop: "3%",
                 }}>
-                    <SemiDonutChart profit={90} invest={10}/>
                 </div>
                 <div style={{
                     position: "absolute",
@@ -56,7 +32,6 @@ function Dashboard() {
                     justifyContent: "center",
                     marginTop: "16%",
                 }}>
-                    <Text style={{fontWeight: "bold", color: "#03b4a8", fontSize: "80px"}}>{currentVal} $</Text>
                 </div>
                 <div style={{
                     marginTop: "20%",
@@ -71,16 +46,10 @@ function Dashboard() {
                         flexDirection: "row-reverse",
                         borderRight: "30px solid transparent"
                     }}>
-                        <RegistrationBox setValues={setNewPanel}/>
-                        <Button onClick={() => goToPageOnClick()} className="goToBuyButton">
-                            buy more units
-                        </Button>
                     </div>
-                    <Heading size={"8"} weight={"bold"} style={{paddingLeft: "30px"}}>
-                        My Investments:
-                    </Heading>
+                    
                     <div style={{marginTop: "10px"}}>
-                        <InvestmentCardPanelsFlexBox/>
+                        <BuyPanelsFlexBox></BuyPanelsFlexBox>
                     </div>
                     <div style={{height: "40px"}}/>
                 </div>
@@ -89,4 +58,4 @@ function Dashboard() {
     );
 }
 
-export default Dashboard;
+export default Buy
