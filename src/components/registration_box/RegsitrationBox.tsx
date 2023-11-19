@@ -4,6 +4,8 @@ import './styleRegistrationBox.css';
 import DropdownRegistrationBox from "./DropdownRegistrationBox.tsx";
 import {Dispatch, SetStateAction, useRef, useState} from "react";
 import {Text} from "@radix-ui/themes";
+import {Bundesland, Configuration, ConfigurationParameters, MessageApi, OfferPost} from "../../api";
+import {useWallet} from "@solana/wallet-adapter-react";
 
 interface Values {
     region: string,
@@ -17,6 +19,7 @@ interface Values {
 
 function RegistrationBox(props: { setValues: Dispatch<SetStateAction<Values | null>> }) {
     const {setValues} = props;
+    const {publicKey} = useWallet()
 
     const [region, setRegion] = useState<string | null>(null);
     const ageRef = useRef<HTMLInputElement | null>(null);
@@ -29,10 +32,18 @@ function RegistrationBox(props: { setValues: Dispatch<SetStateAction<Values | nu
     const [open, setOpen] = useState<boolean>(false);
     const [error, setError] = useState<string | null>()
 
+    const parameters: ConfigurationParameters = {basePath: "https://api-solarana.sokutan.de"};
+    const config = new Configuration(parameters);
+    const messageApi = new MessageApi(config);
+
 
     const handleClick = () => {
         setError(null);
         setRegion(null);
+        if (!publicKey) {
+            setError("Please log in with your wallet to continue");
+            return;
+        }
 
 
         if (region === null) {
@@ -83,8 +94,25 @@ function RegistrationBox(props: { setValues: Dispatch<SetStateAction<Values | nu
                 pricePerUnit: parseFloat(pricePerUnitRef.current?.value),
             }
         )
-        setOpen(false);
 
+        const offerPost: OfferPost = {
+            owner_pk: publicKey.toJSON(),
+            age: Number(ageRef.current?.value),
+            amount: Number(availableAmountRef.current?.value),
+            price:  parseFloat(pricePerUnitRef.current?.value),
+            region: region as Bundesland,
+            size: parseFloat(sizeRef.current?.value),
+            power: parseFloat(kWhUnitRef.current?.value)
+
+        }
+        messageApi.postOfferMarketplaceOrderPost(offerPost).then(response => {
+                if (response.status !== 201){
+                    setError("Fetching fails");
+                } else {
+                    setOpen(false);
+                }
+            }
+        )
     }
 
     return (
@@ -113,7 +141,7 @@ function RegistrationBox(props: { setValues: Dispatch<SetStateAction<Values | nu
                     </fieldset>
                     <fieldset className="Fieldset">
                         <label className="Label" htmlFor="size">
-                            Size in m<sup >2</sup>
+                            Size in m<sup>2</sup>
                         </label>
                         <input className="Input" id="size" defaultValue="" ref={sizeRef}/>
                     </fieldset>
